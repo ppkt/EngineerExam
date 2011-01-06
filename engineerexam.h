@@ -2,6 +2,7 @@
 #define ENGINEEREXAM_H
 
 #include <QtGui/QMainWindow>
+#include "question.h"
 
 namespace Ui {
     class EngineerExam;
@@ -14,14 +15,19 @@ class EngineerExam : public QMainWindow
 public:
     explicit EngineerExam(QWidget *parent = 0);
     ~EngineerExam();
+    void parseQuestions (QString filename);
+    void pickQuestions(unsigned amount);
 
 private slots:
     void on_nextQuestion_clicked();
-
     void on_prevQuestion_clicked();
 
+    void on_checkQuestions_clicked();
+
 private:
-    int questionsAmount;
+    QList<Question> questionsList;
+    QList<Question> tmpList;
+    unsigned questionsAmount;
     Ui::EngineerExam *ui;
 };
 
