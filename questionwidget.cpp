@@ -97,4 +97,5 @@ QRadioButton* QuestionWidget::getCorrectWidget() {
     } else if (correctAnswer == 2) {
 	return ui->C;
     }
+    return 0;
 }
