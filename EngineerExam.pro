@@ -11,8 +11,13 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        engineerexam.cpp
+        engineerexam.cpp \
+    questionwidget.cpp \
+    digitalclock.cpp
 
-HEADERS  += engineerexam.h
+HEADERS  += engineerexam.h \
+    questionwidget.h \
+    digitalclock.h
 
-FORMS    += engineerexam.ui
+FORMS    += engineerexam.ui \
+    questionwidget.ui

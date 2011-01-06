@@ -15,7 +15,13 @@ public:
     explicit EngineerExam(QWidget *parent = 0);
     ~EngineerExam();
 
+private slots:
+    void on_nextQuestion_clicked();
+
+    void on_prevQuestion_clicked();
+
 private:
+    int questionsAmount;
     Ui::EngineerExam *ui;
 };
 
