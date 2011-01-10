@@ -2,6 +2,7 @@
 #define DIGITALCLOCK_H
 #include <QTime>
 #include <QLCDNumber>
+#include <QPointer>
 
 class DigitalClock : public QLCDNumber
 {
@@ -13,9 +14,11 @@ signals:
 
 public slots:
     void start();
+    void stop();
     void showTime();
 
 private:
+    QPointer<QTimer> timer;
     QTime endTime;
 };
 

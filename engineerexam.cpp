@@ -109,9 +109,12 @@ void EngineerExam::on_checkQuestions_clicked() {
 	QuestionWidget *qw = static_cast<QuestionWidget*>(ui->stackedWidget->widget(i));
 	qw->isSelectedAnswerCorrect();
     }
+    ui->timer->stop();
 }
 
 void EngineerExam::on_actionNowy_triggered() {
+    ui->timer->start();
+
     pickQuestions(30);
 
     questionsAmount = questionsList.size();

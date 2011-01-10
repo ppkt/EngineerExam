@@ -5,17 +5,22 @@
 DigitalClock::DigitalClock(QWidget *parent) :
     QLCDNumber(parent) {
     setSegmentStyle(Filled);
-    start();
 }
 
 void DigitalClock::start() {
-
-    QTimer *timer = new QTimer(this);
+    stop();
+    timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(showTime()));
     timer->start(1000);
 
     endTime = QTime::currentTime().addSecs(5400);
     showTime();
+}
+
+void DigitalClock::stop() {
+    if (timer) {
+        delete timer;
+    }
 }
 
 void DigitalClock::showTime() {
