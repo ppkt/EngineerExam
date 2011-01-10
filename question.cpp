@@ -1,14 +1,27 @@
 #include <algorithm>
 #include "question.h"
 Question::Question(quint32 id, QStringList lineFromFile) {
-    this->id = id;
-    this->question = lineFromFile.takeFirst();
-    this->correctAnswer = lineFromFile.takeFirst().toUInt()-1;
+    setId(id);
+    setQuestion(lineFromFile.takeFirst());
+    setCorrectAnswer(lineFromFile.takeFirst().toUInt()-1);
+    setAnswers(lineFromFile);
+}
 
-    QString correctAnswerText = lineFromFile.at(correctAnswer);
+void Question::setAnswers(QStringList answers) {
+    QString correctAnswerText = answers.at(correctAnswer);
 
-    std::random_shuffle(lineFromFile.begin(), lineFromFile.end());
+    std::random_shuffle(answers.begin(), answers.end());
 
-    this->answers = lineFromFile;
-    this->correctAnswer = lineFromFile.indexOf(correctAnswerText);
+    this->answers = answers;
+    this->correctAnswer = answers.indexOf(correctAnswerText);
+}
+
+bool Question::operator ==(const Question &second) const {
+    if (second.getId() == this->getId()) {
+        return true;
+    } else if (second.getQuestion() == this->getQuestion()) {
+        return true;
+    } else {
+        return false;
+    }
 }

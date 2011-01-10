@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 TARGET = EngineerExam
 TEMPLATE = app
@@ -24,5 +24,4 @@ HEADERS  += engineerexam.h \
 FORMS    += engineerexam.ui \
     questionwidget.ui
 
-OTHER_FILES += \
-    questions.txt
+OTHER_FILES +=

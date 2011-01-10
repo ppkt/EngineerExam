@@ -21,8 +21,9 @@ public:
 private slots:
     void on_nextQuestion_clicked();
     void on_prevQuestion_clicked();
-
     void on_checkQuestions_clicked();
+    void on_actionNowy_triggered();
+    void first_question();
 
 private:
     QList<Question> questionsList;

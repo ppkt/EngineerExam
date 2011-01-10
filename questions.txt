@@ -1,5 +1,0 @@
-Question 1|1|answer1.1|answer1.2|answer1.3
-Question 2|1|answer2.1|answer2.2|answer2.3
-Question 3|1|answer3.1|answer3.2|answer3.3
-Question 4|1|answer4.1|answer4.2|answer4.3
-Question 5|1|answer5.1|answer5.2|answer5.3

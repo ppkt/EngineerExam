@@ -23,7 +23,7 @@ void QuestionWidget::setQuestion(int index, int max, Question q) {
 }
 
 void QuestionWidget::setQuestionText(QString question) {
-    ui->question->setText(question);
+    ui->text->setPlainText(question);
 }
 
 void QuestionWidget::setAnswers(QStringList answers) {
@@ -31,35 +31,28 @@ void QuestionWidget::setAnswers(QStringList answers) {
 	qCritical() << trUtf8("Niepełna lista odpowiedzi!");
 	return;
     }
-    ui->A->setText(answers.at(0));
-    ui->B->setText(answers.at(1));
-    ui->C->setText(answers.at(2));
+    ui->ALabel->setPlainText(answers.at(0));
+    ui->BLabel->setPlainText(answers.at(1));
+    ui->CLabel->setPlainText(answers.at(2));
 }
 
 bool QuestionWidget::isSelectedAnswerCorrect() {
-    QFont ok;
-    ok.setPointSize(18);
-    ok.setUnderline(true);
-
-    QFont fail;
-    fail.setPointSize(18);
-    fail.setStrikeOut(true);
-
     quint16 selected = getSelectedAnswer();
     if (selected == correctAnswer) {
-	QRadioButton* selected = getSelectedWidget();
+	QPlainTextEdit* selected = getSelectedWidget();
 	if (selected) {
-	    selected->setFont(ok);
+            selected->setStyleSheet("QPlainTextEdit { border:  2px solid grey; border-radius: 10px; padding: 0 8px; background: green; }");
+
 	}
 	qDebug() << "OK";
 	return true;
     } else {
-	QRadioButton* selected = getSelectedWidget();
-	if (selected) {
-	    selected->setFont(fail);
+	QPlainTextEdit* selected = getSelectedWidget();
+        if (selected) {
+            selected->setStyleSheet("QPlainTextEdit { border:  2px solid grey; border-radius: 10px; padding: 0 8px; background: red; }");
 	}
-	QRadioButton* correct = getCorrectWidget();
-	correct->setFont(ok);
+        QPlainTextEdit* correct = getCorrectWidget();
+        correct->setStyleSheet("QPlainTextEdit { border:  2px solid grey; border-radius: 10px; padding: 0 8px; background: green; }");
 	qDebug() << "Nieok";
 	return false;
     }
@@ -77,25 +70,25 @@ quint16 QuestionWidget::getSelectedAnswer() {
     }
 }
 
-QRadioButton* QuestionWidget::getSelectedWidget() {
+QPlainTextEdit* QuestionWidget::getSelectedWidget() {
     if (ui->A->isChecked()) {
-	return ui->A;
+	return ui->ALabel;
     } else if (ui->B->isChecked()) {
-	return ui->B;
+	return ui->BLabel;
     } else if (ui->C->isChecked()){
-	return ui->C;
+	return ui->CLabel;
     } else {
 	return 0;
     }
 }
 
-QRadioButton* QuestionWidget::getCorrectWidget() {
+QPlainTextEdit* QuestionWidget::getCorrectWidget() {
     if (correctAnswer == 0) {
-	return ui->A;
+	return ui->ALabel;
     } else if (correctAnswer == 1) {
-	return ui->B;
+	return ui->BLabel;
     } else if (correctAnswer == 2) {
-	return ui->C;
+	return ui->CLabel;
     }
     return 0;
 }

@@ -2,7 +2,10 @@
 #define QUESTIONWIDGET_H
 
 #include <QtGui/QWidget>
+#include <QDataWidgetMapper>
+#include <QPlainTextEdit>
 #include <QRadioButton>
+#include <QSqlTableModel>
 #include "question.h"
 
 namespace Ui {
@@ -20,11 +23,13 @@ public:
     void setQuestion(int index, int max, Question q);
     quint32 getQuestionId() const { return this->questionId; }
     bool isSelectedAnswerCorrect();
+
+    void setModel(QSqlTableModel* model);
 private:
     quint16 correctAnswer;
     quint16 getSelectedAnswer();
-    QRadioButton* getSelectedWidget();
-    QRadioButton* getCorrectWidget();
+    QPlainTextEdit* getSelectedWidget();
+    QPlainTextEdit* getCorrectWidget();
 
     void setCorrectAnswer(quint16 correct) { this->correctAnswer = correct; }
     void setQuestionText(QString question);
