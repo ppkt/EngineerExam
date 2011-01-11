@@ -25,6 +25,12 @@ public:
     bool isSelectedAnswerCorrect();
 
     void setModel(QSqlTableModel* model);
+
+public slots:
+    void selectA();
+    void selectB();
+    void selectC();
+
 private:
     quint16 correctAnswer;
     quint16 getSelectedAnswer();
