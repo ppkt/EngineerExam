@@ -4,6 +4,7 @@
 #include <QSqlDatabase>
 #include <QSqlRecord>
 #include <QSqlTableModel>
+#include <ctime>
 #include "engineerexam.h"
 #include "questionwidget.h"
 #include "ui_engineerexam.h"
