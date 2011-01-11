@@ -15,7 +15,7 @@ EngineerExam::EngineerExam(QWidget *parent) :
 
     qsrand(time(NULL));
 
-    parseQuestions("/home/ppkt/Downloads/EngineerExamForm/questions.sqlite");
+    parseQuestions("questions.sqlite");
 }
 
 EngineerExam::~EngineerExam() {
@@ -119,11 +119,9 @@ void EngineerExam::on_actionNowy_triggered() {
 
     questionsAmount = questionsList.size();
 
-    if (ui->stackedWidget->count() > 0) {
-        for (int i = 0; i < ui->stackedWidget->count(); ++i) {
-            QuestionWidget *qw = static_cast<QuestionWidget*>(ui->stackedWidget->widget(0));
-            ui->stackedWidget->removeWidget(qw);
-        }
+    while (ui->stackedWidget->count() > 0) {
+        QuestionWidget *qw = static_cast<QuestionWidget*>(ui->stackedWidget->widget(0));
+        ui->stackedWidget->removeWidget(qw);
     }
 
     for (unsigned i = 0; i < questionsAmount; ++i) {

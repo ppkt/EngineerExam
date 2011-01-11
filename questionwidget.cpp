@@ -37,12 +37,16 @@ void QuestionWidget::setAnswers(QStringList answers) {
 }
 
 bool QuestionWidget::isSelectedAnswerCorrect() {
+
+    ui->A->setDisabled(true);
+    ui->B->setDisabled(true);
+    ui->C->setDisabled(true);
+
     quint16 selected = getSelectedAnswer();
     if (selected == correctAnswer) {
 	QPlainTextEdit* selected = getSelectedWidget();
 	if (selected) {
             selected->setStyleSheet("QPlainTextEdit { border:  2px solid grey; border-radius: 10px; padding: 0 8px; background: green; }");
-
 	}
 	qDebug() << "OK";
 	return true;
@@ -60,11 +64,11 @@ bool QuestionWidget::isSelectedAnswerCorrect() {
 
 quint16 QuestionWidget::getSelectedAnswer() {
     if (ui->A->isChecked()) {
-	return 0;
+        return 0;
     } else if (ui->B->isChecked()) {
-	return 1;
+        return 1;
     } else if (ui->C->isChecked()){
-	return 2;
+        return 2;
     } else {
 	return 999;
     }
