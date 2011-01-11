@@ -19,6 +19,7 @@ public:
     void pickQuestions(unsigned amount);
 
 private slots:
+    void on_actionCheck_triggered();
     void on_nextQuestion_clicked();
     void on_prevQuestion_clicked();
     void on_checkQuestions_clicked();

@@ -200,6 +200,10 @@ void EngineerExam::on_actionPrev_triggered() {
     ui->prevQuestion->click();
 }
 
+void EngineerExam::on_actionCheck_triggered() {
+    ui->checkQuestions->click();
+}
+
 double EngineerExam::grade(double percent) {
     if (percent < 50) {
         return 2.0;

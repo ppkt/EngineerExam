@@ -116,6 +116,7 @@
    <addaction name="actionC"/>
    <addaction name="actionNext"/>
    <addaction name="actionPrev"/>
+   <addaction name="actionCheck"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNowy">
@@ -161,6 +162,14 @@
    </property>
    <property name="shortcut">
     <string>Backspace</string>
+   </property>
+  </action>
+  <action name="actionCheck">
+   <property name="text">
+    <string>check</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Space</string>
    </property>
   </action>
  </widget>

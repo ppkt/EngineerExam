@@ -28,12 +28,7 @@ void DigitalClock::showTime() {
 
     int seconds = time.secsTo(endTime);
     QTime disp = QTime().addSecs(seconds);
-//    disp.addSecs(seconds);
-
     QString text = disp.toString("hh:mm:ss");
-//    qDebug() << disp;
-//    if ((disp.second() % 2) == 0)
-//	text[2] = ' ';
     display(text);
     update();
 }
