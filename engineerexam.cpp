@@ -5,6 +5,7 @@
 #include <QSqlDatabase>
 #include <QSqlRecord>
 #include <QSqlTableModel>
+#include <algorithm>
 #include <ctime>
 #include "engineerexam.h"
 #include "newgame.h"
@@ -103,22 +104,28 @@ void EngineerExam::pickQuestions(unsigned amount) {
     if (!questionsList.isEmpty()) {
         questionsList.clear();
     }
+    std::random_shuffle(tmpList.begin(), tmpList.end());
     //Losujemy pytania
     unsigned count = 0;
     while (count < amount) {
 	if (tmpList.isEmpty()) {
 	    return;
 	}
-	int index = qrand() % tmpList.size();
-        Question q = tmpList.at(index);
-        if (!questionsList.contains(q)) {
-            questionsList.append(q);
-            ++count;
+        if (tmpList.size() < count) {
+            return;
         }
+        Question q = tmpList.at(count);
+        questionsList.append(q);
+        ++count;
     }
 }
 
 void EngineerExam::on_checkQuestions_clicked() {
+    if (this->type == 1) {
+        QuestionWidget *qw = static_cast<QuestionWidget*>(ui->stackedWidget->currentWidget());
+        qw->isSelectedAnswerCorrect();
+        return;
+    }
     int correct = 0;
     for (int i = 0; i < ui->stackedWidget->count(); ++i) {
 	QuestionWidget *qw = static_cast<QuestionWidget*>(ui->stackedWidget->widget(i));
@@ -168,10 +175,6 @@ void EngineerExam::start(int type, int amount) {
         ui->stackedWidget->addWidget(qw);
     }
     first_question();
-
-    if (type == 1) {
-        on_checkQuestions_clicked();
-    }
 }
 
 void EngineerExam::first_question() {
