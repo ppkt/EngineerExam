@@ -14,14 +14,17 @@ SOURCES += main.cpp\
         engineerexam.cpp \
     questionwidget.cpp \
     digitalclock.cpp \
-    question.cpp
+    question.cpp \
+    newgame.cpp
 
 HEADERS  += engineerexam.h \
     questionwidget.h \
     digitalclock.h \
-    question.h
+    question.h \
+    newgame.h
 
 FORMS    += engineerexam.ui \
-    questionwidget.ui
+    questionwidget.ui \
+    newgame.ui
 
 OTHER_FILES +=

@@ -48,7 +48,7 @@ bool QuestionWidget::isSelectedAnswerCorrect() {
 	if (selected) {
             selected->setStyleSheet("QPlainTextEdit { border:  2px solid grey; border-radius: 10px; padding: 0 8px; background: green; }");
 	}
-	qDebug() << "OK";
+//	qDebug() << "OK";
 	return true;
     } else {
 	QPlainTextEdit* selected = getSelectedWidget();
@@ -57,7 +57,7 @@ bool QuestionWidget::isSelectedAnswerCorrect() {
 	}
         QPlainTextEdit* correct = getCorrectWidget();
         correct->setStyleSheet("QPlainTextEdit { border:  2px solid grey; border-radius: 10px; padding: 0 8px; background: green; }");
-	qDebug() << "Nieok";
+//	qDebug() << "Nieok";
 	return false;
     }
 }
@@ -95,4 +95,16 @@ QPlainTextEdit* QuestionWidget::getCorrectWidget() {
 	return ui->CLabel;
     }
     return 0;
+}
+
+void QuestionWidget::selectA() {
+    ui->A->setChecked(true);
+}
+
+void QuestionWidget::selectB() {
+    ui->B->setChecked(true);
+}
+
+void QuestionWidget::selectC() {
+    ui->C->setChecked(true);
 }

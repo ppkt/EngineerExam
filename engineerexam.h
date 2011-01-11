@@ -19,16 +19,25 @@ public:
     void pickQuestions(unsigned amount);
 
 private slots:
+    void on_actionCheck_triggered();
     void on_nextQuestion_clicked();
     void on_prevQuestion_clicked();
     void on_checkQuestions_clicked();
     void on_actionNowy_triggered();
     void first_question();
+    void start(int type, int amount);
+    void on_actionA_triggered();
+    void on_actionB_triggered();
+    void on_actionC_triggered();
+    void on_actionNext_triggered();
+    void on_actionPrev_triggered();
 
 private:
     QList<Question> questionsList;
     QList<Question> tmpList;
+    double grade(double percent);
     unsigned questionsAmount;
+    unsigned type;
     Ui::EngineerExam *ui;
 };
 
