@@ -1,5 +1,7 @@
 #include <QDebug>
+#include <QDir>
 #include <QFile>
+#include <QFileDialog>
 #include <QFileInfo>
 #include <QMessageBox>
 #include <QSqlDatabase>
@@ -18,8 +20,6 @@ EngineerExam::EngineerExam(QWidget *parent) :
     ui->setupUi(this);
 
     qsrand(time(NULL));
-
-    parseQuestions("questions.sqlite");
 }
 
 EngineerExam::~EngineerExam() {
@@ -149,9 +149,21 @@ void EngineerExam::on_checkQuestions_clicked() {
 }
 
 void EngineerExam::on_actionNowy_triggered() {
-    NewGame *ng = new NewGame;
-    ng->show();
-    connect(ng, SIGNAL(start(int,int)), this, SLOT(start(int,int)));
+    if (filename.isEmpty()) {
+        filename = QFileDialog::getOpenFileName(this,
+                                                trUtf8("Otwórz bazę pytań"),
+                                                QDir::currentPath(),
+                                                trUtf8("Baza danych (*.sqlite)"));
+        if (!filename.isEmpty()) {
+            parseQuestions(filename);
+        }
+    }
+
+    if (!filename.isEmpty()) {
+        NewGame *ng = new NewGame;
+        ng->show();
+        connect(ng, SIGNAL(start(int,int)), this, SLOT(start(int,int)));
+    }
 }
 
 void EngineerExam::start(int type, int amount) {

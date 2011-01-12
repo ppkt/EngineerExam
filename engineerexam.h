@@ -35,6 +35,7 @@ private slots:
 private:
     QList<Question> questionsList;
     QList<Question> tmpList;
+    QString filename;
     double grade(double percent);
     unsigned questionsAmount;
     unsigned type;
