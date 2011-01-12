@@ -16,7 +16,7 @@ public:
     explicit EngineerExam(QWidget *parent = 0);
     ~EngineerExam();
     void parseQuestions (QString filename);
-    void pickQuestions(unsigned amount);
+    void pickQuestions(int amount);
 
 private slots:
     void on_actionCheck_triggered();
@@ -37,7 +37,7 @@ private:
     QList<Question> tmpList;
     QString filename;
     double grade(double percent);
-    unsigned questionsAmount;
+    int questionsAmount;
     unsigned type;
     Ui::EngineerExam *ui;
 };

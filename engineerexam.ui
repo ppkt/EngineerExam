@@ -99,7 +99,7 @@
      <x>0</x>
      <y>0</y>
      <width>613</width>
-     <height>27</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
@@ -111,12 +111,6 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionNowy"/>
-   <addaction name="actionA"/>
-   <addaction name="actionB"/>
-   <addaction name="actionC"/>
-   <addaction name="actionNext"/>
-   <addaction name="actionPrev"/>
-   <addaction name="actionCheck"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNowy">
@@ -130,6 +124,9 @@
    </property>
    <property name="shortcut">
     <string>1</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="actionB">

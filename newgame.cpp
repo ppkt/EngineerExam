@@ -15,7 +15,7 @@ NewGame::~NewGame()
 
 void NewGame::on_btnStart_clicked()
 {
-    int type;
+    int type = -1;
     if (ui->radioExam->isChecked()) {
         type = 0;
     } else if (ui->radioLearn->isChecked()) {

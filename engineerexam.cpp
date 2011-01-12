@@ -19,6 +19,13 @@ EngineerExam::EngineerExam(QWidget *parent) :
     ui(new Ui::EngineerExam) {
     ui->setupUi(this);
 
+    this->addAction(ui->actionA);
+    this->addAction(ui->actionB);
+    this->addAction(ui->actionC);
+    this->addAction(ui->actionNext);
+    this->addAction(ui->actionPrev);
+    this->addAction(ui->actionCheck);
+
     qsrand(time(NULL));
 }
 
@@ -27,7 +34,7 @@ EngineerExam::~EngineerExam() {
 }
 
 void EngineerExam::on_nextQuestion_clicked() {
-    unsigned currentIndex = ui->stackedWidget->currentIndex();
+    int currentIndex = ui->stackedWidget->currentIndex();
     int nextIndex;
     if ((currentIndex + 1) < questionsAmount) {
 	nextIndex = currentIndex + 1;
@@ -100,13 +107,13 @@ void EngineerExam::parseQuestions(QString filename) {
     }
 }
 
-void EngineerExam::pickQuestions(unsigned amount) {
+void EngineerExam::pickQuestions(int amount) {
     if (!questionsList.isEmpty()) {
         questionsList.clear();
     }
     std::random_shuffle(tmpList.begin(), tmpList.end());
     //Losujemy pytania
-    unsigned count = 0;
+    int count = 0;
     while (count < amount) {
 	if (tmpList.isEmpty()) {
 	    return;
@@ -181,7 +188,7 @@ void EngineerExam::start(int type, int amount) {
         ui->stackedWidget->removeWidget(qw);
     }
 
-    for (unsigned i = 0; i < questionsAmount; ++i) {
+    for (int i = 0; i < questionsAmount; ++i) {
         QuestionWidget *qw = new QuestionWidget();
         qw->setQuestion(i+1, questionsAmount, questionsList.at(i));
         ui->stackedWidget->addWidget(qw);
@@ -195,16 +202,25 @@ void EngineerExam::first_question() {
 
 void EngineerExam::on_actionA_triggered() {
     QuestionWidget *qw = static_cast<QuestionWidget*>(ui->stackedWidget->currentWidget());
+    if (qw == 0) {
+        return;
+    }
     qw->selectA();
 }
 
 void EngineerExam::on_actionB_triggered() {
     QuestionWidget *qw = static_cast<QuestionWidget*>(ui->stackedWidget->currentWidget());
+    if (qw == 0) {
+        return;
+    }
     qw->selectB();
 }
 
 void EngineerExam::on_actionC_triggered() {
     QuestionWidget *qw = static_cast<QuestionWidget*>(ui->stackedWidget->currentWidget());
+    if (qw == 0) {
+        return;
+    }
     qw->selectC();
 }
 
